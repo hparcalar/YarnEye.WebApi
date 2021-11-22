@@ -84,8 +84,12 @@ namespace YarnEye.WebApi.Controllers
 
                 dbObj.AssignmentId = model.AssignmentId;
                 dbObj.OrderNo = model.OrderNo;
-                dbObj.ProdLineCode = model.ProdLineCode;
-                dbObj.ProdLineName = model.ProdLineName;
+
+                if (!string.IsNullOrEmpty(model.ProdLineCode))
+                    dbObj.ProdLineCode = model.ProdLineCode;
+
+                if (!string.IsNullOrEmpty(model.ProdLineName))
+                    dbObj.ProdLineName = model.ProdLineName;
 
                 _context.SaveChanges();
                 result.Result = true;

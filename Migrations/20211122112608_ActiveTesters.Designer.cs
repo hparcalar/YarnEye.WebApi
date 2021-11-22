@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using YarnEye.WebApi.Context;
@@ -9,9 +10,10 @@ using YarnEye.WebApi.Context;
 namespace YarnEye.WebApi.Migrations
 {
     [DbContext(typeof(YarnEyeContext))]
-    partial class YarnEyeContextModelSnapshot : ModelSnapshot
+    [Migration("20211122112608_ActiveTesters")]
+    partial class ActiveTesters
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

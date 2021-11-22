@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using YarnEye.WebApi.Context;
@@ -9,9 +10,10 @@ using YarnEye.WebApi.Context;
 namespace YarnEye.WebApi.Migrations
 {
     [DbContext(typeof(YarnEyeContext))]
-    partial class YarnEyeContextModelSnapshot : ModelSnapshot
+    [Migration("20211122080020_ActiveAssigners")]
+    partial class ActiveAssigners
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,27 +40,6 @@ namespace YarnEye.WebApi.Migrations
                     b.HasKey("ActiveAssignerId");
 
                     b.ToTable("ActiveAssigner");
-                });
-
-            modelBuilder.Entity("YarnEye.WebApi.Context.ActiveTester", b =>
-                {
-                    b.Property<int>("ActiveTesterId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn);
-
-                    b.Property<string>("IpAddr")
-                        .HasColumnType("text");
-
-                    b.Property<int>("ProdLineId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TesterStatus")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ActiveTesterId");
-
-                    b.ToTable("ActiveTester");
                 });
 
             modelBuilder.Entity("YarnEye.WebApi.Context.ColorAssignment", b =>

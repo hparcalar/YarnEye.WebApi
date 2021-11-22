@@ -12,6 +12,8 @@ namespace YarnEye.WebApi.Context
         public DbSet<ProdLine> ProdLine { get; set; }
         public DbSet<ColorAssignment> ColorAssignment { get; set; }
         public DbSet<YarnCheckResult> YarnCheckResult { get; set; }
+        public DbSet<ActiveAssigner> ActiveAssigner { get; set; }
+        public DbSet<ActiveTester> ActiveTester { get; set; }
 
         public YarnEyeContext() : base() { }
         public YarnEyeContext(DbContextOptions options) : base(options) { }
@@ -47,6 +49,22 @@ namespace YarnEye.WebApi.Context
         public decimal? SetValue { get; set; }
         public bool? IsActive { get; set; }
         public DateTime? CreatedDate { get; set; }
+    }
+
+    public class ActiveAssigner{
+        [Key]
+        public int ActiveAssignerId { get; set; }
+        public string IpAddr { get; set; }
+        public string SelectedLines { get; set; }
+        public int AssignerStatus { get; set; }
+    }
+
+    public class ActiveTester{
+        [Key]
+        public int ActiveTesterId {get;set;}
+        public string IpAddr { get; set; }
+        public int ProdLineId { get; set; }
+        public int TesterStatus { get; set; }
     }
 
     public class YarnCheckResult

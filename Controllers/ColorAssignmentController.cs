@@ -76,6 +76,39 @@ namespace YarnEye.WebApi.Controllers
             return data;
         }
 
+        [HttpGet]
+        [Route("ProdLine/{id}")]
+        public ColorAssignmentModel ProdLine(int id)
+        {
+            ColorAssignmentModel data = new ColorAssignmentModel();
+            try
+            {
+                var dbProdLine = _context.ProdLine.FirstOrDefault(d => d.ProdLineId == id);
+                if (dbProdLine == null)
+                    throw new Exception("Üretim hattı tanımına ulaşılamadı.");
+
+                data = _context.ColorAssignment
+                    .Where(d => d.AssignmentId == dbProdLine.AssignmentId).Select(d => new ColorAssignmentModel
+                    {
+                        AssignmentId = d.AssignmentId,
+                        AssignmentCode = d.AssignmentCode,
+                        CreatedDate = d.CreatedDate,
+                        IsActive = d.IsActive,
+                        //SampleImage = d.SampleImage,
+                        SetHue = d.SetHue,
+                        SetSaturation = d.SetSaturation,
+                        SetValue = d.SetValue,
+                    }).FirstOrDefault();
+            }
+            catch
+            {
+
+            }
+
+            return data;
+        }
+
+
         [HttpPost]
         public BusinessResult Post(ColorAssignmentModel model)
         {
